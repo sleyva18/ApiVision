@@ -22,26 +22,27 @@ public class dao {
         try {
             HttpPost request = new HttpPost("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCJzGaf95za2fTlBkZCr690KfWzzMxq384");
             StringEntity params = new StringEntity("{\n"
-                    + "  \"requests\":[\n"
+                    + "  \"requests\":[\n" //representa una solicitud de recursos.
                     + "    {\n"
-                    + "      \"image\":{\n"
-                    + "        \"source\":{\n"
-                    + "          \"imageUri\":\n"
-                    + "            \"gs://sleyva18/"+dl.getNameFile()+"\"\n"
+                    + "      \"image\":{\n" //
+                    + "        \"source\":{\n" //
+                    + "          \"imageUri\":\n" //
+                    + "            \"gs://sleyva18/"+dl.getNameFile()+"\"\n" //
                     + "        }\n"
                     + "      },\n"
-                    + "      \"features\":[\n"
+                    + "      \"features\":[\n" //Definimos las caracteristicas 
                     + "        {\n"
-                    + "          \"type\":\"DOCUMENT_TEXT_DETECTION\",\n"
-                    + "          \"maxResults\":1\n"
+                    + "          \"type\":\"DOCUMENT_TEXT_DETECTION\",\n" //Tipo de Api a Utilizar
+                    + "          \"maxResults\":1\n" 
                     + "        }\n"
                     + "      ]\n"
                     + "    }\n"
                     + "  ]\n"
                     + "}");
-            request.addHeader("Content-Type", "application/json");
-            request.addHeader("Authorization", "Bearer " + dl.getToken_acces());
-            request.setEntity(params);
+            
+            request.addHeader("Content-Type", "application/json"); // agrega un nuevo encabezado HTML que le decimos sera un tipo : aplicacion json
+            request.addHeader("Authorization", "Bearer " + dl.getToken_acces());// agrega un nuevo encabezado HTML el cual sera de Autorizacion : Bearer Token y añade el Token
+            request.setEntity(params); // Obtiene la solicitud de recursos
             HttpResponse response = httpClient.execute(request);
             HttpEntity entity = response.getEntity();
 //            System.out.println(EntityUtils.toString(entity));
