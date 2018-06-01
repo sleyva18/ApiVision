@@ -20,14 +20,14 @@ public class dao {
         
 
         try {
-            HttpPost request = new HttpPost("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCJzGaf95za2fTlBkZCr690KfWzzMxq384");
-            StringEntity params = new StringEntity("{\n"
+            HttpPost request = new HttpPost("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCJzGaf95za2fTlBkZCr690KfWzzMxq384");// creamos la conexion con el API
+            StringEntity params = new StringEntity("{\n" //Creamos los parametros a mandar
                     + "  \"requests\":[\n" //representa una solicitud de recursos.
                     + "    {\n"
-                    + "      \"image\":{\n" //
-                    + "        \"source\":{\n" //
-                    + "          \"imageUri\":\n" //
-                    + "            \"gs://sleyva18/"+dl.getNameFile()+"\"\n" //
+                    + "      \"image\":{\n" 
+                    + "        \"source\":{\n" 
+                    + "          \"imageUri\":\n" //Ruta del archivo
+                    + "            \"gs://sleyva18/"+dl.getNameFile()+"\"\n" //Agregamos el Nombre del Archivo
                     + "        }\n"
                     + "      },\n"
                     + "      \"features\":[\n" //Definimos las caracteristicas 
