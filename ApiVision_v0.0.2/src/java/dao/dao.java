@@ -20,14 +20,14 @@ public class dao {
         
 
         try {
-            HttpPost request = new HttpPost("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCJzGaf95za2fTlBkZCr690KfWzzMxq384");// creamos la conexion con el API
+            HttpPost request = new HttpPost("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDoGncLD-WZsNunTXjOtKvHu2fD-CMFnik");// creamos la conexion con el API
             StringEntity params = new StringEntity("{\n" //Creamos los parametros a mandar
                     + "  \"requests\":[\n" //representa una solicitud de recursos.
                     + "    {\n"
                     + "      \"image\":{\n" 
                     + "        \"source\":{\n" 
                     + "          \"imageUri\":\n" //Ruta del archivo
-                    + "            \"gs://sleyva18/"+dl.getNameFile()+"\"\n" //Agregamos el Nombre del Archivo
+                    + "            \"gs://lrojas/"+dl.getNameFile()+"\"\n" //Agregamos el Nombre del Archivo
                     + "        }\n"
                     + "      },\n"
                     + "      \"features\":[\n" //Definimos las caracteristicas 
@@ -45,20 +45,7 @@ public class dao {
             request.setEntity(params); // Obtiene la solicitud de recursos
             HttpResponse response = httpClient.execute(request);
             HttpEntity entity = response.getEntity();
-//            System.out.println(EntityUtils.toString(entity));
-
-//            JSONObject root = new JSONObject(EntityUtils.toString(entity));
-//            JSONArray responses = root.getJSONArray("responses");
-//            JSONObject primerElemento = responses.getJSONObject(0);
-//
-//            JSONObject Fulltext = primerElemento.getJSONObject("fullTextAnnotation");
-//
-//            String texto = Fulltext.getString("text");
-//
-//            System.out.println(texto);
             JSONObject json = new JSONObject(EntityUtils.toString(entity));
-//            System.out.println(json.getJSONArray("responses").getJSONObject(0).getJSONObject("fullTextAnnotation").getString("text"));
-            
             dl.setResponses(json.getJSONArray("responses").getJSONObject(0).getJSONObject("fullTextAnnotation").getString("text"));
         } catch (IOException ex) {
             throw ex;
